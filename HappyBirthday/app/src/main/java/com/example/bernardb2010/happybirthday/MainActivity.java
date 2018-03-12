@@ -9,8 +9,7 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer m_MediaPlayer;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         m_MediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.hp_theme);
@@ -19,22 +18,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         m_MediaPlayer.pause();
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         m_MediaPlayer.start();
     }
 
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
         m_MediaPlayer.stop();
         m_MediaPlayer.release();
