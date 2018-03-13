@@ -7,66 +7,70 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:textAllCaps="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quantity"
-        android:textSize="16sp"
         android:layout_margin="16dp"
-        android:textColor="@android:color/darker_gray" />
-
-    <Button
-        android:text="@string/increase_button"
-        android:layout_marginLeft="16dp"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="addCoffee"/>
-
-    <TextView
-        android:id="@+id/quantity_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="16sp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:textColor="#000000" />
-
-    <Button
-        android:text="@string/decrease_button"
-        android:layout_marginLeft="16dp"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="removeCoffee"/>
-
-    <TextView
+        android:text="@string/quantity"
         android:textAllCaps="true"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:onClick="removeCoffee"
+            android:text="@string/decrease_button" />
+
+        <TextView
+            android:id="@+id/quantity_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8sp"
+            android:layout_marginRight="8sp"
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:onClick="addCoffee"
+            android:text="@string/increase_button" />
+
+    </LinearLayout>
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:text="@string/price"
-        android:textSize="16sp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:textColor="@android:color/darker_gray" />
+        android:textAllCaps="true"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/price_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$0"
-        android:textSize="16sp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="16dp"
-        android:textColor="#000000" />
+        android:text="$0"
+        android:textColor="#000000"
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/order_button"
-        android:text="@string/order_button"
-        android:layout_marginLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="submitOrder"/>
+        android:layout_marginLeft="16dp"
+        android:onClick="submitOrder"
+        android:text="@string/order_button" />
 
 </LinearLayout>

@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         display(quantity);
-        displayPrice(quantity * 5);
+        String displayMessage = "Total: ";
+        displayMessage(displayMessage);
     }
 
     /**
@@ -60,14 +61,24 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        priceTextView.append(NumberFormat.getCurrencyInstance().format(number));
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
+        displayPrice(quantity * 5);
+        priceTextView.append("\nThank You!");
     }
 
     public void addCoffee(View view) {
-        display(quantity + 1);
+        display(++quantity);
     }
 
     public void removeCoffee(View view) {
-        display(quantity - 1);
+        display(--quantity);
     }
 }
