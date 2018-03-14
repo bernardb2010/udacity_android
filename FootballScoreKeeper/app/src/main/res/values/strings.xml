@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Football Score Keeper</string>
+    <string name="teamA">Ohio State</string>
+    <string name="teamB">Michigan</string>
+    <string name="td">Touchdown</string>
+    <string name="extraPnt">Extra Point</string>
+    <string name="fg">Field Goal</string>
+    <string name="twoPnt">Two-Point Conversion</string>
+</resources>
