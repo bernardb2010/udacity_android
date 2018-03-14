@@ -7,13 +7,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    final int teamA = 0;
-    final int teamB = 1;
+    private final int teamA = 0;
+    private final int teamB = 1;
+    private final int BOTHTEAMS = 2;
 
-    int teamAScore = 0;
-    int teamBScore = 0;
-    TextView teamATextView;
-    TextView teamBTextView;
+    private int teamAScore = 0;
+    private int teamBScore = 0;
+    private TextView teamATextView;
+    private TextView teamBTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +60,26 @@ public class MainActivity extends AppCompatActivity {
                 teamBScore += 2;
                 teamToUpdate = teamB;
                 break;
+            case R.id.resetButton:
+                teamAScore = 0;
+                teamBScore = 0;
+                teamToUpdate = BOTHTEAMS;
         }
         displayScore(teamToUpdate);
     }
 
     private void displayScore(int teamToUpdate) {
-        if(teamToUpdate == teamA){
-            teamATextView.setText(String.valueOf(teamAScore));
-        } else if(teamToUpdate == teamB){
-            teamBTextView.setText(String.valueOf(teamBScore));
+        switch (teamToUpdate) {
+            case teamA:
+                teamATextView.setText(String.valueOf(teamAScore));
+                break;
+            case teamB:
+                teamBTextView.setText(String.valueOf(teamBScore));
+                break;
+            case BOTHTEAMS:
+                teamATextView.setText(String.valueOf(teamAScore));
+                teamBTextView.setText(String.valueOf(teamBScore));
+                break;
         }
     }
 }

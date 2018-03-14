@@ -5,5 +5,6 @@
     <string name="td">Touchdown</string>
     <string name="extraPnt">Extra Point</string>
     <string name="fg">Field Goal</string>
-    <string name="twoPnt">Two-Point Conversion</string>
+    <string name="twoPnt">2 PT Conv</string>
+    <string name="reset">Reset</string>
 </resources>
