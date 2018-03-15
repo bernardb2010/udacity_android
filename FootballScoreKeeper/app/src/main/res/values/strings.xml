@@ -7,4 +7,5 @@
     <string name="fg">Field Goal</string>
     <string name="twoPnt">2 PT Conv</string>
     <string name="reset">Reset</string>
+    <string name="imageViewDescription">OSU Logo</string>
 </resources>

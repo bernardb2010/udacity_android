@@ -172,6 +172,6 @@
         android:layout_below="@id/teamScoreColumns"
         android:background="@drawable/buckeyes_logo"
         android:scaleType="center"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/imageViewDescription" />
 
 </RelativeLayout>
