@@ -9,7 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final int teamA = 0;
     private final int teamB = 1;
-    private final int BOTHTEAMS = 2;
+    private final int bothTeams = 2;
 
     private int teamAScore = 0;
     private int teamBScore = 0;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.resetButton:
                 teamAScore = 0;
                 teamBScore = 0;
-                teamToUpdate = BOTHTEAMS;
+                teamToUpdate = bothTeams;
         }
         displayScore(teamToUpdate);
     }
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             case teamB:
                 teamBTextView.setText(String.valueOf(teamBScore));
                 break;
-            case BOTHTEAMS:
+            case bothTeams:
                 teamATextView.setText(String.valueOf(teamAScore));
                 teamBTextView.setText(String.valueOf(teamBScore));
                 break;
