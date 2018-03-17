@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 teamAScore += 3;
                 scoreboardToUpdate = TEAM_A;
                 break;
-            case R.id.extraPnTButtonA:
+            case R.id.extraPtButtonA:
                 teamAScore += 1;
                 scoreboardToUpdate = TEAM_A;
                 break;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 teamBScore += 3;
                 scoreboardToUpdate = TEAM_B;
                 break;
-            case R.id.extraPnTButtonB:
+            case R.id.extraPtButtonB:
                 teamBScore += 1;
                 scoreboardToUpdate = TEAM_B;
                 break;
