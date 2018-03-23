@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -27,13 +28,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        convertView.findViewById(R.id.itemListView).setBackgroundColor(ContextCompat.getColor(getContext(), mBackgroundColor));
+        RelativeLayout myLayout = convertView.findViewById(R.id.itemListView);
+        myLayout.setBackgroundColor(ContextCompat.getColor(getContext(), mBackgroundColor));
+
 
         ((TextView) convertView.findViewById(R.id.miwokText))
                 .setText(getItem(position).getMiwokTranslation());
@@ -42,7 +45,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         if (getItem(position).hasImage()) {
             ((ImageView) convertView.findViewById(R.id.image))
-                    .setImageResource(getItem(position).getResourceId());
+                    .setImageResource(getItem(position).getImageResourceId());
             convertView.findViewById(R.id.image).setVisibility(View.VISIBLE);
         } else {
             convertView.findViewById(R.id.image).setVisibility(View.GONE);

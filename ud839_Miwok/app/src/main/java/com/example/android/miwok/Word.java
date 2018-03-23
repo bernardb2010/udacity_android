@@ -11,20 +11,36 @@ public class Word {
      */
     private String mDefaultTranslation;
     private String mMiwokTranslation;
-    private int mResId = NO_IMAGE_PROVIDED;
+    private int mImageResId = NO_IMAGE_PROVIDED;
+    private int mAudioResId;
 
     /**
      * Default constructor for a Word object
      */
-    public Word(String defaultTranslation, String miwokTranslation, int resId) {
+    public Word(String defaultTranslation, String miwokTranslation, int imageRes, int audioRes) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
-        mResId = resId;
+        mImageResId = imageRes;
+        mAudioResId = audioRes;
     }
 
-    public Word(String defaultTranslation, String miwokTranslation) {
+    public Word(String defaultTranslation, String miwokTranslation, int audioRes) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mAudioResId = audioRes;
+    }
+
+    /**
+     * Returns the string representation of the {@link Word} object.
+     */
+    @Override
+    public String toString() {
+        return "Word{" +
+                "mDefaultTranslation='" + mDefaultTranslation + '\'' +
+                ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
+                ", mAudioResourceId=" + mAudioResId +
+                ", mImageResourceId=" + mImageResId +
+                '}';
     }
 
     /**
@@ -44,11 +60,18 @@ public class Word {
     /**
      * Method to get resource Id of image
      */
-    public int getResourceId() {
-        return mResId;
+    public int getImageResourceId() {
+        return mImageResId;
     }
 
     public boolean hasImage() {
-        return mResId != NO_IMAGE_PROVIDED;
+        return mImageResId != NO_IMAGE_PROVIDED;
+    }
+
+    /**
+     * Method to get resource Id of audio
+     */
+    public int getAudioResId() {
+        return mAudioResId;
     }
 }
