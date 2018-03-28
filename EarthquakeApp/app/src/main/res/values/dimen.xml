@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSize">18dp</dimen>
+    <dimen name="marginHorizontal">16dp</dimen>
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="icon_width">56dp</dimen>
+</resources>

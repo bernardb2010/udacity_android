@@ -22,4 +22,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Magnitude width 56, 16 dp from the left edge
+         location starts at 72dp from left edge
+         date ends 16dp from the right
+          android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/magnitudTextView"
+        android:layout_marginStart="@dimen/marginHorizontal"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/textSize"-->
+    <style name="textViewStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/textSize</item>
+    </style>
+
 </resources>
