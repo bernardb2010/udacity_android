@@ -15,32 +15,69 @@
  */
 package com.example.android.quakereport;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class EarthquakeActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
+    public static final String QUERY_STRING = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
+    private ListView earthquakeListView;
+    private ArrayAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
+        new EarthquakeAsyncTask().execute(QUERY_STRING);
 
-//        Monday, March 26, 2018 11:42:21 PM
-        // Create a fake list of earthquake locations.
-        ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
+        earthquakeListView = findViewById(R.id.list);
+        mAdapter = new EarthquakeAdapter(this, new ArrayList<Earthquake>());
 
-        // Find a reference to the {@link ListView} in the layout
-        ListView earthquakeListView = findViewById(R.id.list);
+        // Set the adapter on the {@link ListView}
+        // so the list can be populated in the user interface
+        earthquakeListView.setAdapter(mAdapter);
+    }
 
+    private class EarthquakeAsyncTask extends AsyncTask<String, Void, List<Earthquake>>{
+
+        @Override
+        protected List<Earthquake> doInBackground(String... urls) {
+            List<Earthquake> earthquakes = null;
+            try {
+                earthquakes = QueryUtils.extractEarthquakes(urls[0]);
+            } catch (IOException e){
+                Log.e(LOG_TAG, "IOException", e);
+            }
+            return earthquakes;
+        }
+
+        @Override
+        protected void onPostExecute(List<Earthquake> earthquakes) {
+            updateUI(earthquakes);
+        }
+
+
+    }
+
+    private void updateUI(List<Earthquake> earthquakes) {
+
+
+        if(earthquakes == null){
+            return;
+        }
         // Create a new {@link ArrayAdapter} of earthquakes
         ArrayAdapter<Earthquake> adapter = new EarthquakeAdapter(
-                this, R.layout.earthquake_list, earthquakes);
+                this, earthquakes);
 
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface

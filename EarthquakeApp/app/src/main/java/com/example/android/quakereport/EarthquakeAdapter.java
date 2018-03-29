@@ -32,11 +32,9 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     private GradientDrawable magnitudeCircle;
 
 
-    public EarthquakeAdapter(@NonNull Context context, int resourceId, @NonNull List<Earthquake> objects) {
-        super(context, resourceId, objects);
+    public EarthquakeAdapter(@NonNull Context context, @NonNull List<Earthquake> objects) {
+        super(context, 0, objects);
     }
-
-
 
     @NonNull
     @Override
