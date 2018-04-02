@@ -19,14 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static android.support.v4.content.ContextCompat.startActivity;
-
 public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
-    private final String NEAR_THE = "Near the";
     private static final String LOCATION_SEPARATOR = " of ";
-    private long timeDate;
-    private String supplimentalLocation = "";
+    private final String NEAR_THE = "Near the";
+    private long mTimeDate;
+    private String mSupplimentalLocation = "";
     private String primaryLocation = "";
     private SimpleDateFormat sdf;
     private GradientDrawable magnitudeCircle;
@@ -45,13 +43,13 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         }
 
 
-        timeDate = getItem(position).getDate();
+        mTimeDate = getItem(position).getDate();
         Double currentMag = getItem(position).getMagnitude();
         String mag = getDecimalFormat(currentMag);
 
         TextView magnitudeTextView = convertView.findViewById(R.id.magnitudeTextView);
         magnitudeTextView.setText(mag);
-         magnitudeCircle = (GradientDrawable) magnitudeTextView.getBackground();
+        magnitudeCircle = (GradientDrawable) magnitudeTextView.getBackground();
         int magnitudeColor = getMagnitudeColor(currentMag);
 
         // Set the color on the magnitude circle
@@ -69,7 +67,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         getLocation(getItem(position).getLocation());
 
         ((TextView) convertView.findViewById(R.id.locationTextView1))
-                .setText(supplimentalLocation);
+                .setText(mSupplimentalLocation);
         ((TextView) convertView.findViewById(R.id.locationTextView2))
                 .setText(primaryLocation);
 
@@ -84,7 +82,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
     private int getMagnitudeColor(Double currentMag) {
         int magnitudeColorResId;
 
-        switch ((int)Math.floor(currentMag)){
+        switch ((int) Math.floor(currentMag)) {
             case 0:
             case 1:
                 magnitudeColorResId = R.color.magnitude1;
@@ -125,26 +123,26 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         return formatter.format(magnitude);
     }
 
-    private void getLocation(String currentLocation){
+    private void getLocation(String currentLocation) {
 
         if (currentLocation.contains(LOCATION_SEPARATOR)) {
             String[] parts = currentLocation.split(LOCATION_SEPARATOR);
-            supplimentalLocation = parts[0] + LOCATION_SEPARATOR;
+            mSupplimentalLocation = parts[0] + LOCATION_SEPARATOR;
             primaryLocation = parts[1];
 
         } else {
-            supplimentalLocation = NEAR_THE;
+            mSupplimentalLocation = NEAR_THE;
             primaryLocation = currentLocation;
         }
     }
 
     private String getDate() {
         sdf = new SimpleDateFormat("LLL dd, yyyy");
-        return sdf.format(new Date(timeDate));
+        return sdf.format(new Date(mTimeDate));
     }
 
     private String getTime() {
-        sdf = new SimpleDateFormat("h:mm a");
-        return sdf.format(new Date(timeDate));
+        sdf = new SimpleDateFormat("HH:mm ");
+        return sdf.format(new Date(mTimeDate));
     }
 }

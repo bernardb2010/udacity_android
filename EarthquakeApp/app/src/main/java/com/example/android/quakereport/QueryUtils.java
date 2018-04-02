@@ -1,5 +1,8 @@
 package com.example.android.quakereport;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.HandlerThread;
 import android.util.Log;
 
@@ -41,6 +44,7 @@ public final class QueryUtils {
      * parsing a JSON response.
      */
     public static List<Earthquake> extractEarthquakes(String url) throws IOException {
+
         ArrayList<Earthquake> earthquakes = new ArrayList<Earthquake>();
         String jsonResponse = "";
 
