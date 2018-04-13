@@ -51,14 +51,24 @@ public class PetProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Cannot query unknown uri " + uri);
         }
-        return petDbHelper.getReadableDatabase().query(TABLE_NAME, projection, selection, selectionArgs,
+        Cursor petProvider = petDbHelper.getReadableDatabase().query(TABLE_NAME, projection, selection, selectionArgs,
                 null, null, sortOrder);
+        petProvider.setNotificationUri(getContext().getContentResolver() ,uri);
+        return petProvider;
     }
 
     @Nullable
     @Override
     public String getType(@NonNull Uri uri) {
-        return null;
+
+        switch(petUriMatcher.match(uri)){
+            case PETS:
+                return CONTENT_LIST_TYPE;
+            case PET_ID:
+                return CONTENT_ITEM_TYPE;
+            default:
+                throw new IllegalStateException("Unknown URI " + uri);
+        }
     }
 
     @Nullable
@@ -75,7 +85,16 @@ public class PetProvider extends ContentProvider {
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        switch(petUriMatcher.match(uri)){
+            case PETS:
+                return removeData(uri, selection, selectionArgs);
+            case PET_ID:
+                selection = PetEntry._ID + "=?";
+                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+                return removeData(uri, selection, selectionArgs);
+            default:
+                throw new IllegalArgumentException("Delete is not supported for " + uri);
+        }
     }
 
     @Override
@@ -105,6 +124,7 @@ public class PetProvider extends ContentProvider {
             return null;
         }
 
+        getContext().getContentResolver().notifyChange(uri, null);
         return ContentUris.withAppendedId(uri, id);
     }
 
@@ -147,6 +167,17 @@ public class PetProvider extends ContentProvider {
         if(values.size() == 0 || !isValidData(values)){
             return 0;
         }
+        getContext().getContentResolver().notifyChange(uri, null);
         return petDbHelper.getWritableDatabase().update(TABLE_NAME, values, selection, selectionArgs);
+    }
+
+    private int removeData(Uri uri, String selection, String[] selectionArgs) {
+        int rowsToDelete = petDbHelper.getWritableDatabase().delete(TABLE_NAME, selection, selectionArgs);
+
+        if(rowsToDelete != 0){
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return rowsToDelete;
     }
 }
